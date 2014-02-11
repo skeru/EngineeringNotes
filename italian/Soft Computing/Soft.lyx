@@ -1,0 +1,251 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Miximum Likelihood Estimation
+\end_layout
+
+\begin_layout Standard
+Dato un insieme di campioni 
+\begin_inset Formula $\theta$
+\end_inset
+
+ che sappiamo essere provenienti da un certo tipo di distribuzione, ad esempio
+ una gaussiana di varianza nota, calcoliamo la probabilità che i campioni
+ appartengano ad una distribuzione generica di quel tipo, ad esempio una
+ gaussiana di media incognita.
+ 
+\end_layout
+
+\begin_layout Standard
+Tale funzione si dice funzione di likelihood, il parametro (o i parametri)
+ che la massimizza determina il modello da adottare.
+\end_layout
+
+\begin_layout Subsection
+Procedimento
+\end_layout
+
+\begin_layout Enumerate
+Scrivere likelihood function 
+\begin_inset Formula $L=P\left(Data|\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calcolarne il logaritmo 
+\begin_inset Formula $\mathcal{L}=\log P\left(Data|\theta\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Derivare 
+\begin_inset Formula $\frac{\partial L}{\partial\theta}$
+\end_inset
+
+ o 
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\theta}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Risolvere il sistema di equazioni 
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\theta_{i}}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Verificare l'esattezza della soluzione, ovvero che 
+\begin_inset Formula $\theta^{mle}$
+\end_inset
+
+ massimizza 
+\begin_inset Formula $L$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Gaussiana univariata
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L\left(\mu\right)=\prod_{n=1}^{N}\frac{1}{\sqrt{2\pi\sigma^{2}}}e^{-\frac{\left(x_{n}-\mu\right)^{2}}{2\sigma^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\mathcal{L}=N\left(\log\frac{1}{\sqrt{2\pi\sigma^{2}}}\right)-\frac{1}{2\sigma^{2}}\sum_{n=1}^{N}\left(x_{n}-\mu\right)^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\frac{\partial\mathcal{L}}{\partial\mu}=\frac{1}{2\sigma^{2}}\sum_{n=1}^{N}2\left(x_{n}-\mu\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $\sum_{n=1}^{N}\left(x_{n}-\mu\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu^{mle}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Metodi numerici: Discesa del gradiente
+\end_layout
+
+\begin_layout Enumerate
+Prendere random una possibile soluzione 
+\begin_inset Formula $k_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Calcolarne la derivata 
+\begin_inset Formula $\frac{\partial E\left(k\right)}{\partial k}|_{k_{n}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Aggiornare la soluzione 
+\begin_inset Formula $k_{n}=k_{n-1}-\gamma\cdot\frac{\partial E\left(k\right)}{\partial k}|_{k_{n-1}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Ripetere i passi 2 e 3 fino a convergenza
+\end_layout
+
+\begin_layout Subsubsection
+Possibili problemi e possibili soluzioni
+\end_layout
+
+\begin_layout Standard
+Problemi:
+\end_layout
+
+\begin_layout Itemize
+Diversi minimi locali.
+\end_layout
+
+\begin_layout Itemize
+Lenta convergenza.
+\end_layout
+
+\begin_layout Itemize
+Nessuna convergenza.
+\end_layout
+
+\begin_layout Standard
+Soluzioni:
+\end_layout
+
+\begin_layout Itemize
+Multiple inizializzazioni random.
+\end_layout
+
+\begin_layout Itemize
+Usare derivate seconde.
+\end_layout
+
+\begin_layout Itemize
+Ridurre 
+\begin_inset Formula $\gamma$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document
