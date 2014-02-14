@@ -5,7 +5,7 @@
 \textclass article
 \use_default_options true
 \maintain_unincluded_children false
-\language english
+\language italian
 \language_package default
 \inputencoding auto
 \fontencoding global
@@ -25,6 +25,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -245,6 +246,274 @@ Ridurre
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+Neural Networks
+\end_layout
+
+\begin_layout Subsection
+Introduzione
+\end_layout
+
+\begin_layout Subsubsection
+Perché
+\end_layout
+
+\begin_layout Standard
+Caratteristiche di un modello di rete neuronale
+\end_layout
+
+\begin_layout Itemize
+Gestisce bene dati soggetti a 
+\series bold
+rumore
+\series default
+ (intrinseco o ambientale).
+\end_layout
+
+\begin_layout Itemize
+Fortemente 
+\series bold
+parallelo
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Ridondante
+\series default
+, resistente ai guasti.
+\end_layout
+
+\begin_layout Itemize
+Si 
+\series bold
+adatta
+\series default
+ bene a variazioni ambientali.
+\end_layout
+
+\begin_layout Standard
+Approccio diverso dal paradigma di Von Neumann.
+\end_layout
+
+\begin_layout Subsubsection
+Nota Linguistica
+\end_layout
+
+\begin_layout Description
+Rete
+\begin_inset space ~
+\end_inset
+
+Neurale 
+\emph on
+Neural Network
+\emph default
+.
+ Rete di neuroni (biologia).
+\end_layout
+
+\begin_layout Description
+Rete
+\begin_inset space ~
+\end_inset
+
+Neuronale 
+\emph on
+Artificiale Neural Network
+\emph default
+.
+ Rete di neuroni artificiali (machine learning).
+\end_layout
+
+\begin_layout Subsection
+Dalla biologia al machine learning
+\end_layout
+
+\begin_layout Standard
+Un neurone accumula carica dai recettori attraverso le sinapsi.
+ Possono esserci sinapsi eccitatorie o inibitorie, con pesi variabili.
+ Quando questa carica supera una certa soglia, il neurone scarica attraverso
+ l'assone.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Neurone artificiale
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/ArtificialNeuronModel_english.png
+	lyxscale 40
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Neurone artificiale
+\begin_inset CommandInset citation
+LatexCommand cite
+key "neurone_artificiale"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Un generico neurone 
+\begin_inset Formula $j$
+\end_inset
+
+ è descritto da:
+\end_layout
+
+\begin_layout Itemize
+pesi delle sinapsi 
+\begin_inset Formula $w_{j,i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+valore di attivazione 
+\begin_inset Formula $net_{j}=\sum_{i}w_{j,i}x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+soglia di attivazione 
+\begin_inset Formula $\theta_{j}=-w_{j,0}\cdot1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+funzione di attivazione 
+\begin_inset Formula $\varphi=g_{j}\left(\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+L'output del neurone è definito come
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+o_{j}=g\left(-\theta_{j}+\sum_{i=1}^{N}w_{j,i}x_{i}\right)=g\left(\sum_{i=0}^{N}w_{j,i}x_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Comuni funzioni di attivazione
+\end_layout
+
+\begin_layout Description
+Scalino limitata tra 
+\begin_inset Formula $-1$
+\end_inset
+
+ e 
+\begin_inset Formula $+1$
+\end_inset
+
+ con discontinuità di terzo tipo in 
+\begin_inset Formula $\left(0,0\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Description
+Lineare una retta passante per l'origine di arbitrario coefficiente angolare.
+\end_layout
+
+\begin_layout Description
+Sigmoide limitata tra 
+\begin_inset Formula $0$
+\end_inset
+
+ e 
+\begin_inset Formula $+1$
+\end_inset
+
+ sempre derivabile.
+\end_layout
+
+\begin_layout Description
+Tangente
+\begin_inset space ~
+\end_inset
+
+iperbolica limitata tra 
+\begin_inset Formula $-1$
+\end_inset
+
+ e 
+\begin_inset Formula $+1$
+\end_inset
+
+ sempre derivabile.
+\end_layout
+
+\begin_layout Section
+Bibliografia
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "bib/ArtificialNeuronModel_english"
+options "plain"
+
+\end_inset
+
+
 \end_layout
 
 \end_body
