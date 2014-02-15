@@ -331,7 +331,7 @@ Artificiale Neural Network
 \end_layout
 
 \begin_layout Subsection
-Dalla biologia al machine learning
+Neurone: dalla biologia al machine learning
 \end_layout
 
 \begin_layout Standard
@@ -499,6 +499,166 @@ iperbolica limitata tra
 \end_inset
 
  sempre derivabile.
+\end_layout
+
+\begin_layout Subsection
+Percettrone
+\end_layout
+
+\begin_layout Standard
+È il più semplice modello di neurone artificiale.
+\end_layout
+
+\begin_layout Itemize
+Singolo strato
+\end_layout
+
+\begin_layout Itemize
+Modellizza bene le porte logiche
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+bisezione del piano di input tramite una retta
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Non modellizza lo 
+\series bold
+XOR
+\series default
+!
+\end_layout
+
+\begin_layout Subsection
+Hebbian Learning
+\end_layout
+
+\begin_layout Subsubsection
+Regola di Hebb 
+\end_layout
+
+\begin_layout Standard
+Hebb Learning Rule (1949)
+\end_layout
+
+\begin_layout Quotation
+La forza di una sinapse aumenta in accordo con la simultanea attivazione
+ dell'input relativo e dell'obiettivo desiderato.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{i}^{n+1}=w^{n}+\Delta w_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta w_{i}=\eta\cdot t\cdot x_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\eta$
+\end_inset
+
+: learning rate
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $t$
+\end_inset
+
+: output desiderato
+\end_layout
+
+\begin_layout Subsubsection
+Procedimento di apprendimento
+\end_layout
+
+\begin_layout Enumerate
+Fissare un tasso di apprendimento 
+\begin_inset Formula $\eta$
+\end_inset
+
+ arbitrario.
+\end_layout
+
+\begin_layout Enumerate
+Inizializzare con valori random tutti i pesi 
+\begin_inset Formula $w_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Evolvere un'epoca come segue:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+data una serie di input, calcolare l'output.
+\end_layout
+
+\begin_layout Enumerate
+aggiornare i pesi secondo la regola di Hebb.
+\end_layout
+
+\begin_layout Enumerate
+ripetere per tutti i possibili input.
+\end_layout
+
+\begin_layout Enumerate
+termine dell'epoca.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Se tutti i 
+\begin_inset Formula $\Delta w_{i}$
+\end_inset
+
+ erano nulli l'algoritmo è terminato altrimenti ripetere dal punto precedente.
+\end_layout
+
+\begin_layout Subsection
+Percettrone multistrato
+\end_layout
+
+\begin_layout Standard
+Risolve il problema dello XOR.
+\end_layout
+
+\begin_layout Standard
+Oltre a input e output, introduce livelli nascosti di percettroni.
+ Questo consente di avere valori intermedi su cui basare l'output.
+ A patto di aumentare il numero di percettroni per livello, è sufficiente
+ un unico livello nascosto di percettroni per avere l'espressività necessaria
+ a modellizzare qualunque rete neuronale con 
+\begin_inset Formula $N$
+\end_inset
+
+ livelli nascosti.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
