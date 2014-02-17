@@ -691,7 +691,11 @@ topologia
 \end_layout
 
 \begin_layout Itemize
-funzioni di attivazione
+funzioni di attivazione 
+\begin_inset Formula $h\left(\right)\quad g\left(\right)$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -700,6 +704,128 @@ pesi delle sinapsi
 
 \begin_layout Itemize
 soglie di attivazione
+\end_layout
+
+\begin_layout Subsubsection
+Apprendimento in un percettrone multistrato
+\end_layout
+
+\begin_layout Standard
+Si utilizza la tecnica di discesa del gradiente per minimizzare una funzione
+ di errore.
+ Tecnica altrimenti nota con i nomi:
+\end_layout
+
+\begin_layout Itemize
+Delta rule
+\end_layout
+
+\begin_layout Itemize
+Widrow Hoff rule
+\end_layout
+
+\begin_layout Itemize
+Adaline rule
+\end_layout
+
+\begin_layout Itemize
+Backpropagation
+\end_layout
+
+\begin_layout Standard
+La cui formula si può esprimere come 
+\begin_inset Formula 
+\[
+w^{n+1}=w^{n}+\Delta w
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Delta w=-\eta\cdot\frac{\partial E}{\partial w}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Esempio
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y=g\left(\sum_{j}^{J}W_{j}\cdot h\left(\sum_{i}^{I}w_{j,i}x_{i}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+E=\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Valore
+\begin_inset space ~
+\end_inset
+
+di
+\begin_inset space ~
+\end_inset
+
+attivazione 
+\begin_inset Formula $a_{j}=\sum_{i}^{I}w_{j,i}x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Output
+\begin_inset space ~
+\end_inset
+
+del
+\begin_inset space ~
+\end_inset
+
+j-esimo
+\begin_inset space ~
+\end_inset
+
+neurone 
+\begin_inset Formula $b_{j}=h\left(a_{j}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A=\sum_{j}^{J}W_{j}b_{j}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
