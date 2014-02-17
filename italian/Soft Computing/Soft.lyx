@@ -654,6 +654,54 @@ Oltre a input e output, introduce livelli nascosti di percettroni.
  livelli nascosti.
 \end_layout
 
+\begin_layout Description
+Layer insieme di neuroni a uguale distanza dagli input.
+\end_layout
+
+\begin_layout Description
+Input
+\begin_inset space ~
+\end_inset
+
+Layer layer di neuroni che riceve come input i dati da processare.
+\end_layout
+
+\begin_layout Description
+Output
+\begin_inset space ~
+\end_inset
+
+Layer layer di neuroni che forniscono l'output.
+\end_layout
+
+\begin_layout Subsubsection
+Modello di una rete neuronale
+\end_layout
+
+\begin_layout Standard
+È non lineare ed è caratterizzato da:
+\end_layout
+
+\begin_layout Itemize
+numero di neuroni
+\end_layout
+
+\begin_layout Itemize
+topologia
+\end_layout
+
+\begin_layout Itemize
+funzioni di attivazione
+\end_layout
+
+\begin_layout Itemize
+pesi delle sinapsi
+\end_layout
+
+\begin_layout Itemize
+soglie di attivazione
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
