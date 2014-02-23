@@ -581,7 +581,7 @@ w_{i}^{n+1}=w^{n}+\Delta w_{i}
 \begin_inset Formula $t$
 \end_inset
 
-: output desiderato
+: output desiderato (target)
 \end_layout
 
 \begin_layout Subsubsection
@@ -817,6 +817,22 @@ neurone
 
 \end_layout
 
+\begin_layout Description
+Funzione
+\begin_inset space ~
+\end_inset
+
+di
+\begin_inset space ~
+\end_inset
+
+errore 
+\begin_inset Formula $E$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Formula 
 \[
@@ -872,6 +888,193 @@ t_{n}=y_{n}+\epsilon_{n}\quad\epsilon\sim N\left(0,\sigma^{2}\right)\;\rightarro
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+L'obiettivo diventa quindi approssimare una funzione obiettivo 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+ dato un insieme finito di 
+\begin_inset Formula $N$
+\end_inset
+
+ campioni osservati.
+ Si suppone che la distribuzione dell'errore nelle osservazioni sia normale
+ di varianza 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ Applichiamo allora MLE per approssimare 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Otteniamo la funzione di verosimiglianza
+\begin_inset Formula 
+\[
+L\left(w\right)=\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cerchiamo i pesi che massimizzano questa funzione 
+\begin_inset Formula 
+\[
+\arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Classificazione
+\end_layout
+
+\begin_layout Standard
+L'obiettivo qui è di separare diverse classi di elementi 
+\begin_inset Formula $\Omega_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omega_{1}$
+\end_inset
+
+, ..., 
+\begin_inset Formula $\Omega_{n}$
+\end_inset
+
+.
+ Prendiamo come esempio una classificazione binaria, con funzione obiettivo
+ 
+\begin_inset Formula $t$
+\end_inset
+
+ descritta come di seguito
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{cc}
+t\in\Omega_{0} & 0\\
+t\notin\Omega_{0}\Rightarrow t\in\Omega_{1} & 1
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La distribuzione di probabilità da adottare è una bernulliana 
+\begin_inset Formula $p\left(t|x\right)=y^{t}\left(1-y\right)^{1-t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Come prima, otteniamo la funzione di versimiglianza
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+L\left(w\right)=\prod_{n}^{N}y_{n}^{t_{n}}\left(1-y_{n}\right)^{1-t_{n}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+e massimizzandola i calcoli sono...
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\arg\max_{w}L\left(w\right)=\arg\min_{w}-\sum_{n}^{N}\left[t_{n}\log y_{n}+\left(1-t_{n}\right)\log\left(1-y_{n}\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Problemi e soluzioni
+\end_layout
+
+\begin_layout Subsubsection
+Miglioramento della convergenza
+\end_layout
+
+\begin_layout Itemize
+Discesa del gradiente con momento
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Agisce applicando un filtro passa-basso per saltare i minimi locali.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Metodi 
+\emph on
+quasi Newton
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Trova il punto con derivata seconda nulla assumendo che la funzione sia
+ approssimabile a quadratica nel punto di minimo.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Metodi del gradiente coniugato
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non utilizza la massima pendenza come nella discesa del gradiente.
+ Si basa su una matrice di pesi applicati a superfici di livello.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Subottimi (o ottimi locali)
+\end_layout
+
+\begin_layout Itemize
+Multiple restarts
+\end_layout
+
+\begin_layout Itemize
+Metodi randomizzati
+\end_layout
+
+\begin_layout Subsubsection
+Generalizzazione ed overfitting
+\end_layout
+
+\begin_layout Itemize
+Weight decay
+\end_layout
+
+\begin_layout Itemize
+Early stopping
 \end_layout
 
 \begin_layout Standard
