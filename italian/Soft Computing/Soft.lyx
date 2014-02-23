@@ -1061,6 +1061,13 @@ Subottimi (o ottimi locali)
 Multiple restarts
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+esegue molteplici volte l'algoritmo con diversi punti di inizio.
+ Riduce possibilità di cadere in ottimi locali.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Metodi randomizzati
 \end_layout
@@ -1075,6 +1082,145 @@ Weight decay
 
 \begin_layout Itemize
 Early stopping
+\end_layout
+
+\begin_layout Subsection
+Generalizzazione e Overfitting
+\end_layout
+
+\begin_layout Description
+Overfitting si ha overfitting quando il modello appreso asseconda anche
+ il rumore intrinseco del campione di dati e quindi perde di generalizzazione
+ e non ci si può aspettare di applicarlo ad un nuovo campione di dati e
+ ottenere risultati simili.
+\end_layout
+
+\begin_layout Subsubsection
+Misurare il livello di generalizzazione di un modello
+\end_layout
+
+\begin_layout Enumerate
+Costruire il modello senza un sottoinsieme di dati (test set).
+\end_layout
+
+\begin_layout Enumerate
+Usare i dati del test set per la valutazione.
+\end_layout
+
+\begin_layout Subsubsection
+Evitare overfitting
+\end_layout
+
+\begin_layout Itemize
+Tecniche di cross validazione.
+\end_layout
+
+\begin_layout Itemize
+Includere una distorsione statistica nel modello per controbilanciare il
+ rumore.
+\end_layout
+
+\begin_layout Paragraph
+Early stopping
+\end_layout
+
+\begin_layout Standard
+Questa tecnica consiste nell'interrompere il processo di apprendimento tramite
+ ottimizzazione per fasi.
+ L'interruzione deve avvenire quando le performance sul test set iniziano
+ a peggiorare anche se sul training set.
+\end_layout
+
+\begin_layout Paragraph
+Weight decay
+\end_layout
+
+\begin_layout Standard
+Introduce un termine che penalizza la complessità della rete.
+\end_layout
+
+\begin_layout Standard
+La tecnica di MLE finora usata prevedeva
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\max_{w}P\left(D|w\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Usando invece una tecnica 
+\series bold
+Maximum A-Posteriori
+\series default
+ su un 
+\emph on
+approccio Bayesiano
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\max_{w}P\left(w|D\right)=\arg\max P\left(D|w\right)P\left(w\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+...necessitiamo quindi di conoscere preventivamente la distribuzione dei pesi
+ 
+\begin_inset Formula $P\left(w\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Migliorare generalizzazione usando pesi piccoli 
+\begin_inset Formula $w\sim N\left(0,\sigma_{w}^{2}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Usare distribuzioni iniziali coniugate per avere i valori a posteriori più
+ comodi.
+\end_layout
+
+\begin_layout Standard
+Vediamo un po' di formule
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\max_{w}\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}}\cdot\prod_{m}^{M}\frac{1}{\sqrt{2\pi}\sigma_{w}}e^{-\frac{\left(0-w_{m}\right)^{2}}{2\sigma_{w}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y\right)^{2}+\gamma\sum_{m}^{M}w^{2}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
