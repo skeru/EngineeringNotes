@@ -301,6 +301,18 @@ Approccio diverso dal paradigma di Von Neumann.
 \end_layout
 
 \begin_layout Subsubsection
+Utilizzi
+\end_layout
+
+\begin_layout Itemize
+Modellazione (regressione)
+\end_layout
+
+\begin_layout Itemize
+Classificazione
+\end_layout
+
+\begin_layout Subsubsection
 Nota Linguistica
 \end_layout
 
@@ -382,10 +394,6 @@ key "neurone_artificiale"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -544,7 +552,7 @@ Hebb Learning Rule (1949)
 \end_layout
 
 \begin_layout Quotation
-La forza di una sinapse aumenta in accordo con la simultanea attivazione
+La forza di una sinapsi aumenta in accordo con la simultanea attivazione
  dell'input relativo e dell'obiettivo desiderato.
 \end_layout
 
@@ -706,7 +714,7 @@ pesi delle sinapsi
 soglie di attivazione
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Apprendimento in un percettrone multistrato
 \end_layout
 
@@ -974,7 +982,7 @@ t\notin\Omega_{0}\Rightarrow t\in\Omega_{1} & 1
 \end_layout
 
 \begin_layout Standard
-La distribuzione di probabilità da adottare è una bernulliana 
+La distribuzione di probabilità da adottare è una bernoulliana 
 \begin_inset Formula $p\left(t|x\right)=y^{t}\left(1-y\right)^{1-t}$
 \end_inset
 
@@ -982,7 +990,7 @@ La distribuzione di probabilità da adottare è una bernulliana
 \end_layout
 
 \begin_layout Standard
-Come prima, otteniamo la funzione di versimiglianza
+Come prima, otteniamo la funzione di verosimiglianza
 \end_layout
 
 \begin_layout Standard
