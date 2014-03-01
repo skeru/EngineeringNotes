@@ -3,6 +3,9 @@
 \begin_document
 \begin_header
 \textclass article
+\begin_preamble
+\usepackage{url}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language italian
@@ -59,6 +62,44 @@
 \end_header
 
 \begin_body
+
+\begin_layout Title
+Neural Networks
+\end_layout
+
+\begin_layout Author
+Stefano Cherubin
+\end_layout
+
+\begin_layout Abstract
+Tentativo di riassumere e chiarificare i concetti della sezione 
+\emph on
+Neural Networks
+\emph default
+ del corso 
+\emph on
+Soft Computing
+\emph default
+.
+ Di questo documento non viene fornita garanzia di esattezza, completezza,
+ utilità.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Section
 Miximum Likelihood Estimation
@@ -626,7 +667,7 @@ aggiornare i pesi secondo la regola di Hebb.
 \end_layout
 
 \begin_layout Enumerate
-ripetere per tutti i possibili input.
+ripetere per tutte le possibili variazioni dell'input.
 \end_layout
 
 \begin_layout Enumerate
@@ -643,6 +684,62 @@ Se tutti i
 \end_layout
 
 \begin_layout Subsection
+Topologia FeedForward
+\end_layout
+
+\begin_layout Standard
+Le reti FeedForward sono reti in cui il flusso dei dati scorre dall'input
+ attraverso lo strato nascosto verso l'output senza mai tornare indietro
+ o formare cicli.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename img/MultiLayerNeuralNetworkBigger_english.png
+	lyxscale 50
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Neural Network FeedForward
+\begin_inset CommandInset citation
+LatexCommand cite
+key "NeuralNetwork_FeedForward"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Possono essere reti a singolo strato o, più comunemente, multistrato.
+\end_layout
+
+\begin_layout Subsubsection
 Percettrone multistrato
 \end_layout
 
@@ -1245,7 +1342,7 @@ Bibliografia
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "bib/ArtificialNeuronModel_english"
+bibfiles "bib/ArtificialNeuronModel_english,bib/NeuralNetwork_FeedForward"
 options "plain"
 
 \end_inset
