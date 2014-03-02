@@ -568,7 +568,7 @@ Percettrone
 \end_layout
 
 \begin_layout Standard
-È il primo, nonchè il più semplice modello di neurone artificiale.
+È il primo, nonché il più semplice modello di neurone artificiale.
 \end_layout
 
 \begin_layout Itemize
@@ -643,7 +643,11 @@ w_{i}^{n+1}=w^{n}+\Delta w_{i}
 \begin_inset Formula $x_{i}$
 \end_inset
 
- è l'i-esimo input del percettrone;
+: 
+\begin_inset Formula $i$
+\end_inset
+
+-esimo input del percettrone;
 \end_layout
 
 \begin_layout Itemize
@@ -1802,7 +1806,7 @@ Senza effettuare calcoli, si segnala il fatto che la matrice
 \end_inset
 
  può non essere invertibile.
- Per riolvere tale sistema si introduce quindi una matrice pseudoinversa.
+ Per risolvere tale sistema si introduce quindi una matrice pseudoinversa.
  Si può dimostrare che risolvere tale sistema è perfettamente equivalente
  a minimizzare l'errore 
 \begin_inset Formula $E=\frac{1}{2}\overset{N}{\underset{n}{\sum}}\left(f\left(x_{n}\right)-\hat{f}\left(x_{n}\right)\right){}^{2}$
