@@ -3,9 +3,6 @@
 \begin_document
 \begin_header
 \textclass article
-\begin_preamble
-\usepackage{url}
-\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language italian
@@ -424,13 +421,6 @@ status open
 
 \begin_layout Plain Layout
 Neurone artificiale
-\begin_inset CommandInset citation
-LatexCommand cite
-key "neurone_artificiale"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -555,7 +545,7 @@ Percettrone
 \end_layout
 
 \begin_layout Standard
-È il più semplice modello di neurone artificiale.
+È il primo, nonchè il più semplice modello di neurone artificiale.
 \end_layout
 
 \begin_layout Itemize
@@ -633,6 +623,11 @@ w_{i}^{n+1}=w^{n}+\Delta w_{i}
 : output desiderato (target)
 \end_layout
 
+\begin_layout Standard
+In parole povere, dice che se due neuroni si attivano contemporaneamente,
+ la loro interconnessione deve essere rafforzata.
+\end_layout
+
 \begin_layout Subsubsection
 Procedimento di apprendimento
 \end_layout
@@ -667,7 +662,7 @@ aggiornare i pesi secondo la regola di Hebb.
 \end_layout
 
 \begin_layout Enumerate
-ripetere per tutte le possibili variazioni dell'input.
+ripetere per tutti i possibili input.
 \end_layout
 
 \begin_layout Enumerate
@@ -716,13 +711,6 @@ status open
 
 \begin_layout Plain Layout
 Neural Network FeedForward
-\begin_inset CommandInset citation
-LatexCommand cite
-key "NeuralNetwork_FeedForward"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -860,8 +848,24 @@ w^{n+1}=w^{n}+\Delta w
 
 \end_layout
 
+\begin_layout Standard
+Dove
+\begin_inset Formula ${\displaystyle \frac{\partial E}{\partial w}}$
+\end_inset
+
+è il gradiente della funzione d'errore rispetto ai pesi.
+\end_layout
+
 \begin_layout Subsubsection
 Esempio backpropagation
+\end_layout
+
+\begin_layout Standard
+L'obiettivo è approssimare una funzione 
+\begin_inset Formula $t$
+\end_inset
+
+ dato un insieme di N osservazioni
 \end_layout
 
 \begin_layout Standard
@@ -884,6 +888,12 @@ E=\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+L'errore in pratica è dato dalla sommatoria del quadrato della differenza
+ tra il valore che la funzione t restituisce e quello che restituisce la
+ mia approssimazione.
 \end_layout
 
 \begin_layout Description
@@ -957,6 +967,15 @@ A=\sum_{j}^{J}W_{j}b_{j}
 \end_layout
 
 \begin_layout Standard
+Dove 
+\begin_inset Formula $g(A)$
+\end_inset
+
+ è la funzione di attivazione che prende in ingresso le uscite dei neuroni
+ dello strato intermedio per i relativi pesi.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula $\frac{\partial E}{\partial W_{j}}=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot\frac{\partial A}{\partial W_{j}}=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot b_{j}$
 \end_inset
 
@@ -973,6 +992,25 @@ backpropagation update
 \begin_inset Formula 
 \[
 W_{j}^{t+1}=W_{j}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot g'\left(A\right)\cdot b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Questi calcoli mostrano come approssimare per iterazioni successive i pesi
+ per il neurone dello strato d'uscita.
+ Altrettanto è possibile fare per i neuroni dello strato nascosto, aggiornando
+ i pesi attribuiti agli ingressi.
+ Ovvero:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{ji}^{t+1}=w_{ji}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot g'\left(A\right)\cdot W_{j}\cdot h'(a_{j})\cdot x_{i}
 \]
 
 \end_inset
@@ -1034,12 +1072,16 @@ L\left(w\right)=\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left(t_{n}-y_
 Cerchiamo i pesi che massimizzano questa funzione 
 \begin_inset Formula 
 \[
-\arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
+\arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}[log(\frac{1}{\sigma\sqrt{2\pi}})-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}]=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
 \]
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Tutto ciò che non dipende da w, si elimina!
 \end_layout
 
 \begin_layout Subsubsection
@@ -1071,7 +1113,7 @@ L'obiettivo qui è di separare diverse classi di elementi
 \begin_layout Standard
 \begin_inset Formula $\begin{array}{cc}
 t\in\Omega_{0} & 0\\
-t\notin\Omega_{0}\Rightarrow t\in\Omega_{1} & 1
+t\notin\Omega_{0}\Longleftrightarrow t\in\Omega_{1} & 1
 \end{array}$
 \end_inset
 
@@ -1328,6 +1370,171 @@ Vediamo un po' di formule
 
 \end_layout
 
+\begin_layout Subsection
+Radial Basis Approximation
+\end_layout
+
+\begin_layout Standard
+Per un'approssimazione globale di una 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ possiamo utilizzare una funzione del tipo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{f}(x)=w_{o}+\overset{U}{\underset{u=1}{\sum}}w_{u}\cdot K_{u}(d(x_{u},x))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+dove:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{u}$
+\end_inset
+
+ è un istanza dell'insieme 
+\begin_inset Formula $X$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $K_{u}(d(x_{u},x))$
+\end_inset
+
+ è chiamata kernel function ed è definita in modo tale da decrescere al
+ crescere della distanza 
+\begin_inset Formula $d(x_{u},x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Fissato un numero 
+\begin_inset Formula $U$
+\end_inset
+
+ sufficientemente elevato di funzioni a base radiale è possibile approssimare
+ una qualsiasi funzione con la distanza euclidea mantenendo un errore relativame
+nte piccolo.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+spiegare meglio come funziona la rete sulla base di questa approssimazione.
+\end_layout
+
+\begin_layout Plain Layout
+Una funzione radiale è un percettrone?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Il valore di attivazione 
+\begin_inset Formula $z_{j}$
+\end_inset
+
+ può essere espresso come prodotto scalare euclideo (prodotto elemento per
+ elemento fra corrispondenti) tra il vettore di ingressi 
+\begin_inset Formula $x$
+\end_inset
+
+ ed il vettore trasposto dei pesi delle sinapsi in ingresso al percettrone
+ 
+\begin_inset Formula $j$
+\end_inset
+
+ (ovvero i pesi dell’unità j-esima nascosta) 
+\begin_inset Formula $w_{u}^{T}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+z_{j}=\overset{N}{\underset{i=1}{\sum}}\omega_{j,i}\cdot x_{i}=\overset{N}{\underset{i=1}{\sum}}x_{i}\cdot\omega_{j,i}=x\cdot w_{j}^{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+A partire da quale formula? questa qui sopra?
+\end_layout
+
+\end_inset
+
+Rinominando l’indice con la lettera 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+quale lettera?
+\end_layout
+
+\end_inset
+
+, considerando 
+\begin_inset Formula $U$
+\end_inset
+
+ percettroni, ed il vettore di pesi 
+\begin_inset Formula $w_{j}$
+\end_inset
+
+ con il vettore dei centri dei percettroni 
+\begin_inset Formula $x_{u}$
+\end_inset
+
+, si ottiene perciò che le distanze tra i centri dei percettroni e gli ingressi
+ possono essere espresse tramite prodotto scalare dei due vettori 
+\begin_inset Formula $x$
+\end_inset
+
+ e 
+\begin_inset Formula $x_{u}^{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+d(x_{u},x)=x\cdot x_{u}^{T}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
@@ -1342,7 +1549,7 @@ Bibliografia
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "bib/ArtificialNeuronModel_english,bib/NeuralNetwork_FeedForward"
+bibfiles "bib/ArtificialNeuronModel_english"
 options "plain"
 
 \end_inset
