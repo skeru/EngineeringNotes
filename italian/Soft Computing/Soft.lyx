@@ -1125,11 +1125,12 @@ L\left(w\right)=\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left(t_{n}-y_
 
 \begin_layout Standard
 Cerchiamo i pesi che massimizzano questa funzione.
- Per farlo usiamo il logaritmo perchè è una funzione monotona e non modifica
- il massimo 
+ Per farlo passiamo dalla log verosimiglianza perché il logaritmo è una
+ funzione monotona e che preserva il massimo (e ci semplifica alcuni calcoli)
+ 
 \begin_inset Formula 
 \[
-\arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}[log(\frac{1}{\sigma\sqrt{2\pi}})-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}]=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
+\arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
 \]
 
 \end_inset
@@ -1138,7 +1139,58 @@ Cerchiamo i pesi che massimizzano questa funzione.
 \end_layout
 
 \begin_layout Standard
-Tutto ciò che non dipende da w, si elimina!
+Tutto ciò che non dipende da 
+\begin_inset Formula $w$
+\end_inset
+
+, si elimina! Ed è per questo che:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}[log(\frac{1}{\sigma\sqrt{2\pi}})-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula $=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+\begin_inset Formula $=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
