@@ -1666,21 +1666,94 @@ si ottiene che le distanze tra i centri dei percettroni e gli ingressi possono
 \begin_layout Standard
 \begin_inset Formula 
 \[
-d\left(x_{u},x\right)=x\cdot x_{u}^{T}
+z_{u}=d\left(x_{u},x\right)=x\cdot x_{u}^{T}
 \]
 
 \end_inset
 
 
-\begin_inset Note Note
-status open
+\end_layout
 
-\begin_layout Plain Layout
-\begin_inset Formula $d\left(x_{u},x\right)=z_{u}???$
+\begin_layout Subsubsection
+Training
+\end_layout
+
+\begin_layout Standard
+Si compone di due fasi:
+\end_layout
+
+\begin_layout Enumerate
+Scelto il numero 
+\begin_inset Formula $U$
+\end_inset
+
+ di percettroni dello strato nascosto, per ognuno di essi si definiscono
+ i valori 
+\begin_inset Formula $x_{u}$
+\end_inset
+
+ e 
+\begin_inset Formula $\sigma_{u}^{2}$
+\end_inset
+
+, necessari a definire la kernel function 
+\begin_inset Formula $K_{u}\left(d\left(x_{u},x\right)\right)$
 \end_inset
 
 
 \end_layout
+
+\begin_deeper
+\begin_layout Itemize
+I valori 
+\begin_inset Formula $x_{u}$
+\end_inset
+
+ e 
+\begin_inset Formula $\sigma_{u}^{2}$
+\end_inset
+
+ sono scelti tramite algoritmi di clustering o con altri metodi di unsupervised
+ learning.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+I pesi 
+\begin_inset Formula $w_{u}$
+\end_inset
+
+ vengono scelti con il metodo di massima verosimiglianza, minimizzando la
+ funzione d'errore 
+\begin_inset Formula $E=\frac{1}{2}\overset{N}{\underset{n}{\sum}}\left(f\left(x_{n}\right)-\hat{f}\left(x_{n}\right)\right){}^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È da notare che i parametri delle kernel function, una volta scelti, sono
+ fissi e non cambiano durante questa fase dell'apprendimento.
+ Ciò significa che di fatto si tratta di risolvere un sistema lineare.
+ Questo rende il tutto molto efficiente: l'uscita 
+\begin_inset Formula $Y$
+\end_inset
+
+ è una combinazione lineare dell'output degli 
+\begin_inset Formula $U$
+\end_inset
+
+ neuroni dello strato nascosto.
+ In formule:
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y=Uw
+\]
 
 \end_inset
 
@@ -1688,18 +1761,105 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
+La fase di apprendimento supervisionato consiste quindi nel risolvere un
+ sistema lineare di N equazioni (si ricorda che N è il numero di possibili
+ vettori in input) in 
+\begin_inset Formula $U$
+\end_inset
 
-\begin_layout Plain Layout
-Manca sezione RBF learning
+ incognite che, scritto in forma matriciale, diventa
 \end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\left[\begin{array}{c}
+t_{1}\\
+t_{2}\\
+\ldots\\
+t_{N}
+\end{array}\right]=\left[\begin{array}{cccc}
+h(\overset{I}{\underset{i=1}{\sum}}\omega_{1,i}\cdot x_{i})_{1} & h(\overset{I}{\underset{i=1}{\sum}}\omega_{2,i}\cdot x_{i})_{1} & \ldots & h(\overset{I}{\underset{i=1}{\sum}}\omega_{U,i}\cdot x_{i})_{1}\\
+h(\overset{I}{\underset{i=1}{\sum}}\omega_{1,i}\cdot x_{i})_{1} & h(\overset{I}{\underset{i=1}{\sum}}\omega_{2,i}\cdot x_{i})_{2} & \ldots & h(\overset{I}{\underset{i=1}{\sum}}\omega_{U,i}\cdot x_{i})_{2}\\
+\vdots & \vdots & \ddots & \vdots\\
+h(\overset{I}{\underset{i=1}{\sum}}\omega_{1,i}\cdot x_{i})_{N} & h(\overset{I}{\underset{i=1}{\sum}}\omega_{2,i}\cdot x_{i})_{N} & \ldots & h(\overset{I}{\underset{i=1}{\sum}}\omega_{U,i}\cdot x_{i})_{N}
+\end{array}\right]\cdot\left[\begin{array}{c}
+\omega_{1}\\
+\omega_{2}\\
+\ldots\\
+\omega_{U}
+\end{array}\right]
+\]
 
 \end_inset
 
 
 \end_layout
 
+\begin_layout Standard
+Senza effettuare calcoli, si segnala il fatto che la matrice 
+\begin_inset Formula $U$
+\end_inset
+
+ può non essere invertibile.
+ Per riolvere tale sistema si introduce quindi una matrice pseudoinversa.
+ Si può dimostrare che risolvere tale sistema è perfettamente equivalente
+ a minimizzare l'errore 
+\begin_inset Formula $E=\frac{1}{2}\overset{N}{\underset{n}{\sum}}\left(f\left(x_{n}\right)-\hat{f}\left(x_{n}\right)\right){}^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph
+Impostare la Kernel function
+\end_layout
+
+\begin_layout Standard
+Questa operazione può essere effettuata in due modi diversi, tenendo conto
+ del fatto che la scelta dei parametri deve rispecchiare la densità dei
+ dati di ingresso:
+\end_layout
+
+\begin_layout Enumerate
+Avere tante funzioni a base radiale quanti sono i punti 
+\begin_inset Formula $\left\langle x_{x},f(x)\right\rangle $
+\end_inset
+
+ a disposizione nel training set e scegliere come centri delle funzioni
+ proprio tali punti.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Può dare problemi di performance.
+\end_layout
+
+\begin_layout Itemize
+Si adatta molto bene ai dati, è facile che causi overfitting.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Scegliere un numero 
+\begin_inset Formula $U$
+\end_inset
+
+ di percettroni relativamente piccolo.
+ Addestrare la rete al fine di valutare le performance e aggiungere un neurone
+ per volta per migliorare la entry con l'errore di predizione più alto.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Più veloce per via del minor numero di neuroni
+\end_layout
+
+\begin_layout Itemize
+Viene favorita la capacità di generalizzazione.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
