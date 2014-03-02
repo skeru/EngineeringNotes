@@ -1860,6 +1860,96 @@ Viene favorita la capacità di generalizzazione.
 \end_layout
 
 \end_deeper
+\begin_layout Subsection
+Topologie 
+\end_layout
+
+\begin_layout Standard
+Le principali topologie delle reti neuronali possono essere classificate
+ come segue:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Standard feedforward
+\series default
+.
+ È possibile effettuare regressione da 
+\begin_inset Formula $x\left(t\right)$
+\end_inset
+
+ a 
+\begin_inset Formula $y\left(t+1\right)$
+\end_inset
+
+ ma non è possibile catturare valori più vecchi di 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Feedforward with delayed input
+\series default
+.
+ Si replica un numero finito 
+\begin_inset Formula $q$
+\end_inset
+
+ di vecchi valori di 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ La regressione si applica quindi da 
+\begin_inset Formula $\begin{array}{cccc}
+x\left(t\right) & x\left(t-1\right) & \ldots & x\left(t-q\right)\end{array}$
+\end_inset
+
+.
+ In questa topologia 
+\begin_inset Formula $q$
+\end_inset
+
+ è un altro parametro da impostare.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Recurrent Artificial Neural Networks
+\series default
+.
+ Si aggiunge una nuova componente 
+\begin_inset Formula $b$
+\end_inset
+
+ all'hidden layer per memorizzare i valori di 
+\begin_inset Formula $x$
+\end_inset
+
+ arbitrariamente distanti nel tempo.
+ Si introduce inoltre un nuovo input 
+\begin_inset Formula $c\left(t\right)$
+\end_inset
+
+ per rappresentare il precedente valore di 
+\begin_inset Formula $b$
+\end_inset
+
+, cioè 
+\begin_inset Formula $c\left(t\right)=b\left(t-1\right)$
+\end_inset
+
+.
+ Si osservi che in questa topologia il flusso dei dati torna dall'hidden
+ layer all'input layer: non è una topologia feedforward.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
