@@ -598,7 +598,7 @@ Hebbian Learning
 \end_layout
 
 \begin_layout Subsubsection
-Regola di Hebb 
+Regola di Hebb
 \end_layout
 
 \begin_layout Standard
@@ -636,14 +636,21 @@ w_{i}^{n+1}=w^{n}+\Delta w_{i}
 \begin_inset Formula $\eta$
 \end_inset
 
-: learning rate
+: learning rate;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ è l'i-esimo input del percettrone;
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $t$
 \end_inset
 
-: output desiderato (target)
+: output desiderato (target).
 \end_layout
 
 \begin_layout Standard
@@ -688,10 +695,12 @@ aggiornare i pesi secondo la regola di Hebb.
 ripetere per tutti i possibili input.
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 termine dell'epoca.
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Enumerate
 Se tutti i 
@@ -699,6 +708,18 @@ Se tutti i
 \end_inset
 
  erano nulli l'algoritmo è terminato altrimenti ripetere dal punto precedente.
+\end_layout
+
+\begin_layout Standard
+Da notare che più il tasso di apprendimento 
+\begin_inset Formula $\eta$
+\end_inset
+
+ è elevato, più facilmente varierà il valore associato al peso 
+\begin_inset Formula $w_{i}^{n+1}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -1014,7 +1035,8 @@ Dove
 \end_layout
 
 \begin_layout Standard
-Regola di 
+Andando a sostituire il risultato nella formula della backpropagation, si
+ ottiene la regola di 
 \emph on
 backpropagation update
 \end_layout
@@ -1035,13 +1057,13 @@ Questi calcoli mostrano come approssimare per iterazioni successive i pesi
  per il neurone dello strato d'uscita.
  Altrettanto è possibile fare per i neuroni dello strato nascosto, aggiornando
  i pesi attribuiti agli ingressi.
- Ovvero:
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-w_{ji}^{t+1}=w_{ji}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot g'\left(A\right)\cdot W_{j}\cdot h'(a_{j})\cdot x_{i}
+w_{j,i}^{t+1}=w_{j,i}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot g'\left(A\right)\cdot W_{j}\cdot h'(a_{j})\cdot x_{i}
 \]
 
 \end_inset
@@ -1074,13 +1096,15 @@ L'obiettivo diventa quindi approssimare una funzione obiettivo
 \end_inset
 
  campioni osservati.
- Si suppone che la distribuzione dell'errore nelle osservazioni sia normale
- di varianza 
+ Si suppone che i campioni siano indipendenti ed identicamente distribuiti
+ e che la distribuzione dell'errore nelle osservazioni sia normale di varianza
+ 
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
 .
- Applichiamo allora MLE per approssimare 
+ Applichiamo allora la Maximum Likelihood Estimation (MLE) per approssimare
+ 
 \begin_inset Formula $t_{n}$
 \end_inset
 
@@ -1100,7 +1124,9 @@ L\left(w\right)=\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{\left(t_{n}-y_
 \end_layout
 
 \begin_layout Standard
-Cerchiamo i pesi che massimizzano questa funzione 
+Cerchiamo i pesi che massimizzano questa funzione.
+ Per farlo usiamo il logaritmo perchè è una funzione monotona e non modifica
+ il massimo 
 \begin_inset Formula 
 \[
 \arg\max_{w}L\left(w\right)=\arg\max_{w}\log L\left(w\right)=\arg\max_{w}-\sum_{n}^{N}[log(\frac{1}{\sigma\sqrt{2\pi}})-\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}]=\arg\max_{w}-\sum_{n}^{N}\frac{\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}
@@ -1406,11 +1432,25 @@ Radial Basis Approximation
 \end_layout
 
 \begin_layout Standard
-Per un'approssimazione globale di una 
+Dati un insieme finito di punti, che supponiamo appartenere ad una 
 \begin_inset Formula $f(x)$
 \end_inset
 
- possiamo utilizzare una funzione del tipo
+, vorremmo un'approssimazione di tale funzione utilizzando una rete formata
+ ad U percettroni ognuno dei quali rappresenta una funzione di base 
+\begin_inset Formula $K_{u}$
+\end_inset
+
+ che dipende dalla distanza euclidea tra il centro 
+\begin_inset Formula $x_{u}$
+\end_inset
+
+ del percettrone ed il vettore di ingressi 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ La funzione di approssimazione può essere espressa in tal modo:
 \end_layout
 
 \begin_layout Standard
@@ -1429,14 +1469,10 @@ dove:
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $x_{u}$
+\begin_inset Formula $x$
 \end_inset
 
- è un istanza dell'insieme 
-\begin_inset Formula $X$
-\end_inset
-
-;
+ è un vettore di input;
 \end_layout
 
 \begin_layout Itemize
@@ -1452,7 +1488,7 @@ dove:
 \end_layout
 
 \begin_layout Standard
-Fissato un numero 
+Fissato un valore 
 \begin_inset Formula $U$
 \end_inset
 
@@ -1469,10 +1505,6 @@ status open
 spiegare meglio come funziona la rete sulla base di questa approssimazione.
 \end_layout
 
-\begin_layout Plain Layout
-Una funzione radiale è un percettrone?
-\end_layout
-
 \end_inset
 
 
@@ -1483,8 +1515,9 @@ Il valore di attivazione
 \begin_inset Formula $z_{j}$
 \end_inset
 
- può essere espresso come prodotto scalare euclideo (prodotto elemento per
- elemento fra corrispondenti) tra il vettore di ingressi 
+ di un generico neurone della rete, può essere espresso come prodotto scalare
+ euclideo (prodotto elemento per elemento fra corrispondenti) tra il vettore
+ di ingressi 
 \begin_inset Formula $x$
 \end_inset
 
@@ -1494,7 +1527,7 @@ Il valore di attivazione
 \end_inset
 
  (ovvero i pesi dell’unità j-esima nascosta) 
-\begin_inset Formula $w_{u}^{T}$
+\begin_inset Formula $w_{j}^{T}$
 \end_inset
 
 :
@@ -1512,39 +1545,43 @@ z_{j}=\overset{N}{\underset{i=1}{\sum}}\omega_{j,i}\cdot x_{i}=\overset{N}{\unde
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-A partire da quale formula? questa qui sopra?
-\end_layout
-
+Rinominando l’indice 
+\begin_inset Formula $j$
 \end_inset
 
-Rinominando l’indice con la lettera 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-quale lettera?
-\end_layout
-
+ (il pedice dei pesi 
+\begin_inset Formula $w$
 \end_inset
 
-, considerando 
+) con la lettera 
+\begin_inset Formula $u$
+\end_inset
+
+ (perchè consideriamo 
 \begin_inset Formula $U$
 \end_inset
 
- percettroni, ed il vettore di pesi 
-\begin_inset Formula $w_{j}$
+ percettroni) ed il vettore di pesi 
+\begin_inset Formula $w$
 \end_inset
 
  con il vettore dei centri dei percettroni 
-\begin_inset Formula $x_{u}$
+\begin_inset Formula $x$
 \end_inset
 
-, si ottiene perciò che le distanze tra i centri dei percettroni e gli ingressi
- possono essere espresse tramite prodotto scalare dei due vettori 
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{j}^{T}\Longrightarrow x_{u}^{T}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+si ottiene che le distanze tra i centri dei percettroni e gli ingressi possono
+ essere espresse tramite prodotto scalare dei due vettori 
 \begin_inset Formula $x$
 \end_inset
 
