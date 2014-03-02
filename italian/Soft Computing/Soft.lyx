@@ -1480,16 +1480,44 @@ Vediamo un po' di formule
 \end_layout
 
 \begin_layout Subsection
-Radial Basis Approximation
+Radial basis function network
+\end_layout
+
+\begin_layout Subsubsection
+Definizione
 \end_layout
 
 \begin_layout Standard
-Dati un insieme finito di punti, che supponiamo appartenere ad una 
+Una radial basis function network è una rete neuronale che fa uso di funzioni
+ a base radiale come funzioni di attivazione.
+ L'output di una rete di questo tipo è una combinazione lineare di funzioni
+ (a base radiale) degli input della rete e parametri dei neuroni.
+\begin_inset Formula 
+\[
+y=\varphi\left(x,param\right)=\sum_{u}^{U}\alpha_{u}\cdot\rho\left(\left|\left|x-c_{u}\right|\right|\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Approssimazione a base radiale
+\end_layout
+
+\begin_layout Standard
+Dati un insieme finito di punti, campionati da una 
 \begin_inset Formula $f(x)$
 \end_inset
 
-, vorremmo un'approssimazione di tale funzione utilizzando una rete formata
- ad U percettroni ognuno dei quali rappresenta una funzione di base 
+, si vuole ottenere un'approssimazione di tale funzione utilizzando una
+ rete formata da 
+\begin_inset Formula $U$
+\end_inset
+
+ percettroni.
+ Ognuno di questi percettroni rappresenta una funzione di base 
 \begin_inset Formula $K_{u}$
 \end_inset
 
@@ -1497,18 +1525,22 @@ Dati un insieme finito di punti, che supponiamo appartenere ad una
 \begin_inset Formula $x_{u}$
 \end_inset
 
- del percettrone ed il vettore di ingressi 
+ (riferimento per il percettrone 
+\begin_inset Formula $u$
+\end_inset
+
+) ed il vettore di ingressi 
 \begin_inset Formula $x$
 \end_inset
 
 .
- La funzione di approssimazione può essere espressa in tal modo:
+ La funzione di approssimazione può essere espressa come
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\hat{f}(x)=w_{o}+\overset{U}{\underset{u=1}{\sum}}w_{u}\cdot K_{u}(d(x_{u},x))
+\hat{f}(x)=w_{o}+\overset{U}{\underset{u=1}{\sum}}w_{u}\cdot K_{u}\left(d\left(x_{u},x\right)\right)
 \]
 
 \end_inset
@@ -1528,12 +1560,12 @@ dove:
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $K_{u}(d(x_{u},x))$
+\begin_inset Formula $K_{u}\left(d\left(x_{u},x\right)\right)$
 \end_inset
 
  è chiamata kernel function ed è definita in modo tale da decrescere al
- crescere della distanza 
-\begin_inset Formula $d(x_{u},x)$
+ crescere della distanza euclidea 
+\begin_inset Formula $d\left(x_{u},x\right)$
 \end_inset
 
 .
@@ -1550,26 +1582,13 @@ nte piccolo.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-spiegare meglio come funziona la rete sulla base di questa approssimazione.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Il valore di attivazione 
 \begin_inset Formula $z_{j}$
 \end_inset
 
  di un generico neurone della rete, può essere espresso come prodotto scalare
- euclideo (prodotto elemento per elemento fra corrispondenti) tra il vettore
- di ingressi 
+ (prodotto elemento per elemento fra corrispondenti) tra il vettore di ingressi
+ 
 \begin_inset Formula $x$
 \end_inset
 
@@ -1578,7 +1597,7 @@ Il valore di attivazione
 \begin_inset Formula $j$
 \end_inset
 
- (ovvero i pesi dell’unità j-esima nascosta) 
+ (i pesi dell’unità j-esima nascosta) 
 \begin_inset Formula $w_{j}^{T}$
 \end_inset
 
@@ -1588,7 +1607,7 @@ Il valore di attivazione
 \begin_layout Standard
 \begin_inset Formula 
 \[
-z_{j}=\overset{N}{\underset{i=1}{\sum}}\omega_{j,i}\cdot x_{i}=\overset{N}{\underset{i=1}{\sum}}x_{i}\cdot\omega_{j,i}=x\cdot w_{j}^{T}
+z_{j}=\overset{N}{\underset{i=1}{\sum}}w_{j,i}\cdot x_{i}=\overset{N}{\underset{i=1}{\sum}}x_{i}\cdot w_{j,i}=x\cdot w_{j}^{T}
 \]
 
 \end_inset
@@ -1609,19 +1628,19 @@ Rinominando l’indice
 \begin_inset Formula $u$
 \end_inset
 
- (perchè consideriamo 
+ (perché consideriamo 
 \begin_inset Formula $U$
 \end_inset
 
- percettroni) ed il vettore di pesi 
+ percettroni) ed il vettore 
 \begin_inset Formula $w$
 \end_inset
 
- con il vettore dei centri dei percettroni 
+ di pesi con il vettore 
 \begin_inset Formula $x$
 \end_inset
 
-
+ dei centri dei percettroni
 \end_layout
 
 \begin_layout Itemize
@@ -1647,8 +1666,34 @@ si ottiene che le distanze tra i centri dei percettroni e gli ingressi possono
 \begin_layout Standard
 \begin_inset Formula 
 \[
-d(x_{u},x)=x\cdot x_{u}^{T}
+d\left(x_{u},x\right)=x\cdot x_{u}^{T}
 \]
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $d\left(x_{u},x\right)=z_{u}???$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Manca sezione RBF learning
+\end_layout
 
 \end_inset
 
