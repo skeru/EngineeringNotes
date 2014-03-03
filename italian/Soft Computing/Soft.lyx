@@ -1954,6 +1954,98 @@ Recurrent Artificial Neural Networks
  layer all'input layer: non è una topologia feedforward.
 \end_layout
 
+\begin_layout Subsection
+Sistemi neuro-fuzzy
+\end_layout
+
+\begin_layout Subsubsection
+Pro e contro
+\end_layout
+
+\begin_layout Paragraph
+Neural Networks
+\end_layout
+
+\begin_layout Itemize
+PRO
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+L'apprendimento avviene adattandosi ai dati
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+CONTRO
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+È un approccio black box, non vi è spiegazione di cosa accade
+\end_layout
+
+\begin_layout Itemize
+Non c'è modo di inserire o integrare domain knowledge
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph
+Regole fuzzy 
+\end_layout
+
+\begin_layout Itemize
+PRO
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Chiara spiegazione delle regole di inferenza applicate
+\end_layout
+
+\begin_layout Itemize
+Lavora con dati incerti
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+CONTRO
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Non c'è modo di imparare dai dati
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+Neuro-fuzzy network
+\end_layout
+
+\begin_layout Standard
+Partendo da un insieme di dati non fuzzy, tramite una rete di percettroni
+ multistrato si generano degli insiemi fuzzy che descrivono i dati.
+ Questi insiemi fuzzy possono poi essere combinati linearmente in un successivo
+ strato della rete neuronale per fornire output significativi.
+\end_layout
+
+\begin_layout Paragraph
+Apprendimento
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage clearpage
 \end_inset
