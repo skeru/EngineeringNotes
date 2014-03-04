@@ -1475,7 +1475,29 @@ Vediamo un po' di formule
 \begin_layout Standard
 \begin_inset Formula 
 \[
-\hat{w}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y\right)^{2}+\gamma\sum_{m}^{M}w^{2}
+\hat{w}=\arg\max_{w}\sum_{n}^{N}\frac{-\left(t_{n}-y_{n}\right)^{2}}{2\sigma^{2}}+\sum_{m}^{M}\frac{-w_{m}^{2}}{2\sigma_{w}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma=\frac{\sigma^{2}}{\sigma_{w}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y\right)^{2}+\gamma\sum_{m}^{M}w_{m}^{2}
 \]
 
 \end_inset
