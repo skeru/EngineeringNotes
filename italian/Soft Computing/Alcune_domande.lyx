@@ -1,0 +1,406 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Soft Computing 
+\end_layout
+
+\begin_layout Part
+2014 Febbrario 07
+\end_layout
+
+\begin_layout Section
+Feedforward Neural Networks
+\end_layout
+
+\begin_layout Standard
+Consider the classical feed forward neural network architecture with I input
+ neurons, J hidden neurons and 1 output neuron:
+\end_layout
+
+\begin_layout Itemize
+Draw it and write the output characteristics got the output [1 point]
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y=g\left(\sum_{j}^{J}W_{j}h\left(\sum_{i}^{i}w_{i}x_{i}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Define the general formula for the weights update according to backpropagation
+ (i.e.
+ gradient descent) [1 point]
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w\left(t\right)=w\left(t-1\right)+\Delta w
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w\left(t\right)=w\left(t-1\right)-\eta\frac{\partial E}{\partial w}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Derive the error function of weight decay starting from the Maximum A-Posteriori
+ principle to weight estimation [1 point]
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\max_{w}\prod_{n}^{N}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^{2}}\left(t_{n}-y_{n}\right)^{2}}\prod_{m}^{M}\frac{1}{\sqrt{2\pi}\sigma_{w}}e^{-\frac{1}{2\sigma_{w}^{2}}\left(-w_{m}\right)^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\min_{w}\sum_{n}^{N}\frac{1}{2\sigma^{2}}\left(t_{n}-y_{n}\right)^{2}+\sum_{m}^{M}\frac{1}{2\sigma_{m}^{2}}\left(w_{m}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\gamma=\frac{\sigma^{2}}{\sigma_{w}^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{w}=\arg\min_{w}\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}+\gamma\sum_{m}^{M}w_{m}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Derive the 2 backpropagation formulas, respectively for the weight going
+ into the output neuron and into the hidden neurons, using the weight dacay
+ error function [2 points]
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+for the output neuron
+\begin_inset Formula 
+\[
+\hat{w}^{t+1}=w^{t}-\eta\frac{\partial E}{\partial w}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\hat{w}^{t+1}=w^{t}-\eta\frac{\partial}{\partial w}\left(\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=w^{t}-\eta\frac{\partial}{\partial w}\left(\sum_{n}^{N}\left(t_{n}-g\left(A\right)\right)^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A=W_{j}b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial w_{j}}=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\frac{\partial}{\partial W_{j}}\left(t-g\left(A\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot\frac{\partial}{\partial W_{j}}A
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+W_{j}^{t+1}=W_{j}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot\left(g'\left(A\right)\right)\cdot b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+for the hidden neurons
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial w_{j,i}}=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot\frac{\partial}{\partial w_{j,i}}A
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot W_{j}\cdot\frac{\partial}{\partial w_{j,i}}b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+=\sum_{n}^{N}2\left(t-g\left(A\right)\right)\cdot\left(-g'\left(A\right)\right)\cdot W_{j}\cdot h'\left(a_{j}\right)\cdot\frac{\partial}{\partial w_{j,i}}a_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{j,i}^{t+1}=w_{j,i}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot g'\left(A\right)\cdot W_{j}\cdot h'\left(a_{j}\right)\cdot x_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Describe the issue of overfitting and describe, in details, the early stopping
+ technique to avoid it [2 points]
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Overfitting is when the model learn the data noise and does not generalize
+ on new samples (it memorize the training set).
+\end_layout
+
+\begin_layout Itemize
+Early stopping technique consist in stopping the learning process before
+ it starts to fit the noise in the data.
+ It it useful to split the data in two sets, one for the learning process
+ and one for the test process.
+ A good point to stop the algorithm is when the error measured on the test
+ set starts to increase.
+ It is also useful to decide how many neurons put in the hidden layer.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+How could we estimate the 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ in the weight decay formula? [1 point]
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We can chose 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ to minimize the error function over 
+\begin_inset Formula $\gamma$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Bayesian Network
+\end_layout
+
+\begin_layout Itemize
+Ho conditional independency is defined?
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $a$
+\end_inset
+
+ e 
+\begin_inset Formula $b$
+\end_inset
+
+ sono condizionatamente indipendenti dato 
+\begin_inset Formula $c$
+\end_inset
+
+ se 
+\begin_inset Formula $p\left(a|b,c\right)=p\left(a|c\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+What is te difference between Monte Carlo sampling and likelihood weighting?
+ When should we prefer Monte Carlo sampling w.r.t.
+ likelihood sampling? When should we prefer likelihood sampling w.r.t.
+ Monte Carlo sampling? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
