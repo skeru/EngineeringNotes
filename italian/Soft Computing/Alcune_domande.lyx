@@ -82,6 +82,11 @@ Draw it and write the output characteristics got the output [1 point]
 
 \begin_deeper
 \begin_layout Standard
+Nel disegnarla ricordare che ogne neurone dello strato di input è collegati
+ con ogni neurone dello strato dell'hidden layer.
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 y=g\left(\sum_{j}^{J}W_{j}h\left(\sum_{i}^{i}w_{i}x_{i}\right)\right)
@@ -182,7 +187,7 @@ Derive the 2 backpropagation formulas, respectively for the weight going
 
 \begin_deeper
 \begin_layout Itemize
-for the output neuron
+For the output neuron
 \begin_inset Formula 
 \[
 \hat{w}^{t+1}=w^{t}-\eta\frac{\partial E}{\partial w}
@@ -268,7 +273,7 @@ W_{j}^{t+1}=W_{j}^{t}+2\eta\sum_{n}^{N}\left(t-g\left(A\right)\right)\cdot\left(
 \end_layout
 
 \begin_layout Itemize
-for the hidden neurons
+For the hidden neurons
 \end_layout
 
 \begin_layout Standard
@@ -325,6 +330,8 @@ Describe the issue of overfitting and describe, in details, the early stopping
 \begin_layout Itemize
 Overfitting is when the model learn the data noise and does not generalize
  on new samples (it memorize the training set).
+ It can happen also when the number of training examples is too small to
+ produce a representative sample of the true target function.
 \end_layout
 
 \begin_layout Itemize
@@ -396,8 +403,258 @@ What is te difference between Monte Carlo sampling and likelihood weighting?
  Monte Carlo sampling? 
 \end_layout
 
+\begin_layout Part
+2005 Luglio 08
+\end_layout
+
+\begin_layout Section
+Fuzzy
+\end_layout
+
+\begin_layout Itemize
+Come può essere implementato il modicatore fuzzy "very"? [3 punti]
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Si eleva al quadrato il valore restituito dalla membership function.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Radial Basis Function
+\end_layout
+
+\begin_layout Itemize
+In cosa si dierenzia dalle classiche topoligie feed-forward questa topologia?
+ [2 punti]
+\end_layout
+
 \begin_deeper
 \begin_layout Itemize
+In both cases the mappings are expressed in terms of parametrized compositions
+ of functions of single variables.
+ The particular structures of the two networks are very different, however.
+\end_layout
+
+\begin_layout Itemize
+The hidden unit representations of the multi-layer perceptron depend on
+ weighted linear summations of the inputs, transformed by monotonic activation
+ functions.
+ By contrast, the hidden units in a radial basis function network use distance
+ to a prototype vector followed by transformation with a (usually) localized
+ function.
+\end_layout
+
+\begin_layout Itemize
+A multi-layer perceptron can be said to form a distributed representation
+ in the space of activation values for the hidden units since, for a given
+ input vector, many hidden units will typically contribute to the determination
+ of the output value.
+ By contrast, a radial basis function network with localized basis functions
+ forms a representation in the space of hidden units which is local with
+ respect to the input space because, for a given input vector, typically
+ only a few hidden units will have significant activations.
+\end_layout
+
+\begin_layout Itemize
+A multi-layer perceptron often has many layers of weights, and a complex
+ pattern of connectivity, so that not all possible weights in any given
+ layer are present.
+ Also, a variety of different activation functions may be used within the
+ same network.
+ A radial basis function network, however, generally has a simple architecture
+ consisting of two layers of weights, in which the first layer contains
+ the parameters of the basis functions, and the second layer forms linear
+ combinations of the activations of the basis functions to generate the
+ outputs.
+\end_layout
+
+\begin_layout Itemize
+All of the parameters in a multi-layer perceptron are usually determined
+ at the same time as part of a single global training strategy involving
+ supervised training.
+ A radial basis function network, however, is typically trained in two stages,
+ with the basis functions being determined first by unsupervised techniques
+ using the input data alone, and the secondlayer weights subsequently being
+ found by fast linear supervised methods.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+È possibile che si verifichino problemi di overfitting con questo tipo di
+ reti? Nel caso affermativo, se ne faccia un esempio, altrimenti se ne spieghi
+ il motivo [2 punti].
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Si, dipende dalla kernel function.
+ Se allochiamo una funzione gaussiana per ogni campione 
+\begin_inset Formula $\left\langle x_{n},f\left(x_{n}\right)\right\rangle ~N\left(x_{n},\sigma{}^{2}\right)$
+\end_inset
+
+, avremo comunque problemi di overfitting dato che la funzione registra
+ anche il rumore dei dati.
+ Una possibile soluzione alternativa per la scelta dei kernel che garantisce
+ capacità di generalizzazione migliori consiste in una U relativamente piccola,
+ aggiungere un neurone alla volta, allenare la rete e inserire un nuovo
+ neurone in corrispondenza del record col più alto errore di predizione.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Algoritmi Genetici
+\end_layout
+
+\begin_layout Itemize
+Riportare lo schema generale di un algoritmo genetico [3 punti]
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+[Start] Generate random population of n chromosomes (suitable solutions)
+\end_layout
+
+\begin_layout Enumerate
+[Fitness] Evaluate the fitness f(x) of each chromosome x in the population
+\end_layout
+
+\begin_layout Enumerate
+[New population] Create a new population by repeating the following steps
+ until the new population is complete
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+[Selection] Select two parent chromosomes from a population according to
+ their fitness (the better fitness, the bigger chance to be selected)
+\end_layout
+
+\begin_layout Enumerate
+[Crossover] With a crossover probability cross over the parents to form
+ new offspring.
+ If no crossover was performed, offspring is the exact copy of parents.
+\end_layout
+
+\begin_layout Enumerate
+[Mutation] With a mutation probability mutate new offsprings at each locus
+\end_layout
+
+\begin_layout Enumerate
+[Accepting] Place new offsprings in the new population
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[Replace] Use new generated population for a further run of the algorithm
+\end_layout
+
+\begin_layout Enumerate
+[Test] If the end condition is satisfied, return the best solution in current
+ population
+\end_layout
+
+\begin_layout Enumerate
+[Loop] Go to step 2
+\end_layout
+
+\end_deeper
+\begin_layout Part
+2008 Febbraio 20
+\end_layout
+
+\begin_layout Section
+Radial Basis Function
+\end_layout
+
+\begin_layout Itemize
+Si disegni una RBF con 3 ingressi e 2 uscite, si riporti quindi la formulazione
+ matematica dell’output di tale RBF
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Supponendo di usare una funzione gaussiana come Kernel, ovvero 
+\begin_inset Formula $K_{u}\left(d\left(x_{u},x\right)\right)=e^{-\frac{1}{2\sigma^{2}}d^{2}\left(x_{u},x\right)}$
+\end_inset
+
+ si ha:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y=w_{0}+\sum_{u=1}^{U}w_{u}\cdot e^{-\frac{1}{2\sigma^{2}}d^{2}\left(x_{u},x\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+E possibile applicare un algoritmo di backpropagation al modello RBF? Se
+ si perché non lo si fa e cosa si applica nella pratica?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Non si usa il backpropagation perché viene di solito usato per addestrare
+ reti con pesi diversi per ogni funzione di attivazione.
+ Le RBF invece vengono addestrate in un processo a due passaggi:
+\end_layout
+
+\begin_layout Enumerate
+The number U of hidden units is determined and each hidden unit is defined
+ by choosing the values of 
+\begin_inset Formula $x_{u}$
+\end_inset
+
+ and 
+\begin_inset Formula $σ_{u}^{2}$
+\end_inset
+
+ that define its kernel function 
+\begin_inset Formula $K_{u}\left(d\left(x_{u},x\right)\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The weights 
+\begin_inset Formula $w_{u}$
+\end_inset
+
+ are trained to maximize the fitting of the network using the error function;
+ Since the kernel functions are held fixed during the second stage, the
+ linear weights 
+\begin_inset Formula $w_{u}$
+\end_inset
+
+ can be trained very efficiently.
+\end_layout
+
+\end_deeper
+\begin_layout Part
+2005 Giugno 27
+\end_layout
+
+\begin_layout Section
+Fuzzy
+\end_layout
+
+\begin_layout Itemize
+Quanto vale la somma dei due numeri fuzzy triangolari (0,2,4) e (2,4,8)?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $\left[0+2,\,2+4,\,4+8\right]=\left[2,\,6,\,12\right]$
+\end_inset
+
 
 \end_layout
 
