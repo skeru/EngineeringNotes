@@ -397,12 +397,36 @@ Ho conditional independency is defined?
 
 \end_deeper
 \begin_layout Itemize
-What is te difference between Monte Carlo sampling and likelihood weighting?
+What is the difference between Monte Carlo sampling and likelihood weighting?
  When should we prefer Monte Carlo sampling w.r.t.
  likelihood sampling? When should we prefer likelihood sampling w.r.t.
  Monte Carlo sampling? 
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Monte Carlo sampling è utile perché non richiede conoscenze preliminari
+ sulla rete se non le probabilità condizionate.
+ Genera molti campioni, non tutti vengono però utilizzati per calcolare
+ la probabilità richiesta.
+\end_layout
+
+\begin_layout Itemize
+Likelihood sampling necessita di calcolare per ogni campione la probabilità
+ di essere generato ed è quindi più oneroso computazionalmente.
+ Ha il vantaggio di generare solamente campioni utili ai fini del calcolo
+ della probabilità richiesta, fissando i valori delle variabili date (genera
+ campioni solo sulle probabilità non note).
+ A parità di campioni generati è molto più preciso del Monte Carlo sampling.
+\end_layout
+
+\begin_layout Itemize
+Qualora non fosse possibile conoscere le probabilità condizionate della
+ rete è necessario utilizzare Monte Carlo sampling, in tutti gli altri casi
+ è preferibile likelihood sampling.
+\end_layout
+
+\end_deeper
 \begin_layout Part
 2005 Luglio 08
 \end_layout
