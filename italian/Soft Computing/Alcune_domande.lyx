@@ -188,17 +188,12 @@ Derive the 2 backpropagation formulas, respectively for the weight going
 \begin_deeper
 \begin_layout Itemize
 For the output neuron
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
 \[
 \hat{w}^{t+1}=w^{t}-\eta\frac{\partial E}{\partial w}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\hat{w}^{t+1}=w^{t}-\eta\frac{\partial}{\partial w}\left(\sum_{n}^{N}\left(t_{n}-y_{n}\right)^{2}\right)
 \]
 
 \end_inset
@@ -637,14 +632,14 @@ The number U of hidden units is determined and each hidden unit is defined
 \end_inset
 
  and 
-\begin_inset Formula $σ_{u}^{2}$
+\begin_inset Formula $\sigma_{u}^{2}$
 \end_inset
 
  that define its kernel function 
 \begin_inset Formula $K_{u}\left(d\left(x_{u},x\right)\right)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Enumerate
@@ -683,5 +678,99 @@ Quanto vale la somma dei due numeri fuzzy triangolari (0,2,4) e (2,4,8)?
 \end_layout
 
 \end_deeper
+\begin_layout Part
+Altre cacate
+\end_layout
+
+\begin_layout Standard
+Derive the 2 backpropagation formulas for the error function 
+\begin_inset Formula $E=\sum_{n}^{N}t_{n}\log y_{n}+\left(1-t_{n}\right)\log\left(1-y_{n}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+first formula
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial W_{j}}=\sum_{n}^{N}\frac{t_{n}}{y_{n}}\cdot g'\left(A\right)\cdot\frac{\partial A}{\partial W_{j}}+\frac{1-t_{n}}{1-y_{n}}\cdot\left(-g'\left(A\right)\right)\cdot\frac{\partial A}{\partial W_{j}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+A=W_{j}\cdot b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial W_{j}}=\sum_{n}^{N}\frac{t_{n}}{y_{n}}\cdot g'\left(A\right)\cdot b_{j}-\frac{1-t_{n}}{1-y_{n}}\cdot g'\left(A\right)\cdot b_{j}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+second formula
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial w_{j,i}}=\sum_{n}^{N}\frac{t_{n}}{y_{n}}\cdot g'\left(A\right)\cdot\frac{\partial A}{\partial w_{j,i}}+\frac{1-t_{n}}{1-y_{n}}\cdot\left(-g'\left(A\right)\right)\cdot\frac{\partial A}{\partial w_{j,i}}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+b_{j}=h\left(\sum_{i}^{I}a_{j,i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+a_{j,i}=w_{j,i}\cdot x_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{\partial E}{\partial w_{j,i}}=\sum_{n}^{N}\frac{t_{n}}{y_{n}}\cdot g'\left(A\right)\cdot W_{j}\cdot h'\left(a_{j}\right)\cdot x_{i}-\frac{1-t_{n}}{1-y_{n}}\cdot g'\left(A\right)\cdot W_{j}\cdot h'\left(a_{j}\right)\cdot x_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
