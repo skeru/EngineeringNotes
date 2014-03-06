@@ -395,7 +395,7 @@ Ho conditional independency is defined?
 What is the difference between Monte Carlo sampling and likelihood weighting?
  When should we prefer Monte Carlo sampling w.r.t.
  likelihood sampling? When should we prefer likelihood sampling w.r.t.
- Monte Carlo sampling? 
+ Monte Carlo sampling?
 \end_layout
 
 \begin_deeper
@@ -770,6 +770,150 @@ a_{j,i}=w_{j,i}\cdot x_{i}
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Reinforcement learning
+\end_layout
+
+\begin_layout Standard
+Categorie e algoritmi
+\end_layout
+
+\begin_layout Enumerate
+Dynamic Programming
+\end_layout
+
+\begin_layout Enumerate
+Monte Carlo
+\end_layout
+
+\begin_layout Enumerate
+Temporal Difference (TD)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+TD Learning
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+variante TD (
+\begin_inset Formula $\lambda$
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Q Learning
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+variante Q (
+\begin_inset Formula $\lambda$
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Subsection
+Dynamic programming
+\end_layout
+
+\begin_layout Standard
+Programmazione dinamica.
+ Si applica solo quando si ha conoscenza globale dell'ambiente.
+ In pratica quando si ha un MDP (Markov Decision Process) con lo schema
+ ben definito.
+\end_layout
+
+\begin_layout Standard
+Possibili algoritmi di programmazione dinamica sono:
+\end_layout
+
+\begin_layout Itemize
+Value iteration 
+\end_layout
+
+\begin_layout Itemize
+Policy iteration 
+\end_layout
+
+\begin_layout Subsection
+Monte Carlo
+\end_layout
+
+\begin_layout Subsection
+Temporal Difference
+\end_layout
+
+\begin_layout Standard
+L'aggiornamento dell'agente avviene a tempo discreto e la funzione di rinforzo
+ dipende dalla differenza tra due stati ed, eventualmente, dalle azioni
+ compiute per passare da uno stato all'altro.
+\end_layout
+
+\begin_layout Subsubsection
+TD learning
+\end_layout
+
+\begin_layout Standard
+Questo algoritmo si basa sulla differenza temporale tra due stati e la funzione
+ di rinforzo non dipende da come si passa da uno stato all'altro.
+\end_layout
+
+\begin_layout Subsubsection
+Q-learning
+\end_layout
+
+\begin_layout Standard
+Questo algoritmo si basa sulla differenza temporale tra due stati e pone
+ l'accento sulle azioni eseguite per passare da uno stato all'altro.
+ La funzione di rinforzo dipende dallo stato da cui si parte e dalla azione
+ eseguita per arrivare in un altro stato.
+\end_layout
+
+\begin_layout Subsubsection
+Varianti TD (
+\begin_inset Formula $\lambda$
+\end_inset
+
+) e Q (
+\begin_inset Formula $\lambda$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Queste varianti introducono il concetto di 
+\series bold
+elegibility trace
+\series default
+.
+ Sono utilizzate quando il rinforzo è molto distante nel tempo, un esempio
+ sono tutti i casi in cui il rinforzo viene fornito solamente al termine
+ del processo che l'agente deve apprendere.
+\end_layout
+
+\begin_layout Standard
+Queste varianti memorizzano in una lista gli stati attraversati e le azioni
+ compiute.
+ Quando l'agente incontra un rinforzo, questi aggiorna la funzione di rinforzo
+ distribuendo il premio su tutti gli stati precedentemente attraversati.
+ Nella redistribuzione del rinforzo viene dato maggiore peso agli stati
+ visitati di recente.
+ Viene così lasciata una 
+\emph on
+traccia
+\emph default
+ degli stati percorsi durante l'apprendimento.
 \end_layout
 
 \end_body
